@@ -60,6 +60,10 @@ Question: ${question}`,
 
     return NextResponse.json({ answer: content.text });
   } catch (err) {
+    if (err instanceof Anthropic.APIError && err.status === 402) {
+      console.error('ANTHROPIC_USAGE_LIMIT_REACHED', err);
+      return NextResponse.json({ error: 'usage_limit' }, { status: 503 });
+    }
     console.error('API error:', err);
     const message = err instanceof Error ? err.message : 'Failed to process question';
     return NextResponse.json({ error: message }, { status: 500 });

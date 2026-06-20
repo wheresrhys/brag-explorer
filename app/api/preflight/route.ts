@@ -45,6 +45,10 @@ Question: ${question}`,
 
     return NextResponse.json(result);
   } catch (err) {
+    if (err instanceof Anthropic.APIError && err.status === 402) {
+      console.error('ANTHROPIC_USAGE_LIMIT_REACHED', err);
+      return NextResponse.json({ relevant: false, usageLimitReached: true });
+    }
     console.error('Preflight error:', err);
     // Fail open — a preflight error should not block a legitimate question
     return NextResponse.json({ relevant: true });

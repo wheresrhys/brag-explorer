@@ -84,6 +84,11 @@ export default function BragExplorer() {
         body: JSON.stringify({ question: trimmed }),
       });
       const preflight = await preflightRes.json();
+      if (preflight.usageLimitReached) {
+        setError('This service has reached its usage limit and will be unavailable for a while. Please try again later.');
+        setStatus('idle');
+        return;
+      }
       if (!preflight.relevant) {
         setError(preflight.reason ?? 'Please ask a question relevant to professional work experience.');
         setStatus('idle');
@@ -102,6 +107,7 @@ export default function BragExplorer() {
         body: JSON.stringify({ question: trimmed }),
       });
       const data = await res.json();
+      if (data.error === 'usage_limit') throw new Error('This service has reached its usage limit and will be unavailable for a while. Please try again later.');
       if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
       setAnswer(data.answer);
       setQuestion('');
