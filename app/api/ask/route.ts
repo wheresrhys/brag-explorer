@@ -1,16 +1,20 @@
+import fs from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic();
 
 async function getWorkHistory(): Promise<string> {
-  const url = process.env.WORK_HISTORY_BLOB_URL;
-  if (!url) throw new Error('WORK_HISTORY_BLOB_URL is not configured');
+  const source = process.env.WORK_HISTORY_BLOB_URL;
+  if (!source) throw new Error('WORK_HISTORY_BLOB_URL is not configured');
 
-  const res = await fetch(url, { next: { revalidate: 3600 } });
-  if (!res.ok) throw new Error(`Failed to fetch work history: ${res.status}`);
+  if (source.startsWith('http://') || source.startsWith('https://')) {
+    const res = await fetch(source, { next: { revalidate: 3600 } });
+    if (!res.ok) throw new Error(`Failed to fetch work history: ${res.status}`);
+    return res.text();
+  }
 
-  return res.text();
+  return fs.readFile(source, 'utf-8');
 }
 
 export async function POST(req: NextRequest) {
