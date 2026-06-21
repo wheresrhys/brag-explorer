@@ -43,6 +43,7 @@ function saveDailyCount(count: number) {
 
 export default function BragExplorer() {
   const [question, setQuestion] = useState('');
+  const [submittedQuestion, setSubmittedQuestion] = useState<string | null>(null);
   const [answer, setAnswer] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -111,6 +112,7 @@ export default function BragExplorer() {
       const data = await res.json();
       if (data.error === 'usage_limit') throw new Error('This service has reached its usage limit and will be unavailable for a while. Please try again later.');
       if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      setSubmittedQuestion(trimmed);
       setAnswer(data.answer);
       setQuestion('');
     } catch (err) {
@@ -229,6 +231,9 @@ export default function BragExplorer() {
 
       {answer && (
         <div className="mt-8 rounded-lg border border-stone-200 bg-white px-6 py-6 shadow-sm">
+          {submittedQuestion && (
+            <h2 className="mt-0 mb-4 text-base font-semibold text-stone-800">{submittedQuestion}</h2>
+          )}
           <div className="prose prose-stone prose-sm max-w-none">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{answer}</ReactMarkdown>
           </div>
