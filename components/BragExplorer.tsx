@@ -186,6 +186,12 @@ export default function BragExplorer() {
             id="question"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                e.currentTarget.form?.requestSubmit();
+              }
+            }}
             disabled={disabled || isLoading}
             maxLength={MAX_CHARS}
             rows={4}
