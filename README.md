@@ -60,6 +60,14 @@ npm install
 npm run dev
 ```
 
+For local development you don't need a Vercel Blob store — set `WORK_HISTORY_BLOB_URL` to a local file path instead:
+
+```
+WORK_HISTORY_BLOB_URL=./work-history.md
+```
+
+The app will read the file directly from disk. Use a Blob URL only for the deployed version on Vercel.
+
 ## Behaviour notes
 
 - Each question is answered independently — no conversation history is maintained
