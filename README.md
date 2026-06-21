@@ -46,6 +46,7 @@ Sign up at [console.anthropic.com](https://console.anthropic.com) and create an 
 | `WORK_HISTORY_BLOB_URL` | The public URL of your uploaded markdown file |
 | `NEXT_PUBLIC_OWNER_NAME` | Your first name (e.g. `Alice`) |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Your email address |
+| `NEXT_PUBLIC_DAILY_QUESTION_LIMIT` | *(Optional)* Max questions per visitor per day. Omit for unlimited. |
 
 3. Click **Deploy**
 
@@ -73,4 +74,4 @@ The app will read the file directly from disk. Use a Blob URL only for the deplo
 - Each question is answered independently — no conversation history is maintained
 - Questions are checked for relevance before being sent to Claude; off-topic questions (maths, trivia, etc.) are rejected
 - The question field accepts any name or pronoun ("Is he…", "Has she…", "Does Rhys…" — all work)
-- Visitors are limited to 5 questions per day, enforced via cookie; a sixth attempt triggers a gentle nudge towards arranging an interview
+- Visitor question limits are enforced via cookie. Set `NEXT_PUBLIC_DAILY_QUESTION_LIMIT` to cap daily questions per visitor; once exceeded, a nudge towards arranging an interview is shown. Omit the variable for no limit.

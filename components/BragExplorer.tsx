@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-const DAILY_LIMIT = 5;
+const DAILY_LIMIT = process.env.NEXT_PUBLIC_DAILY_QUESTION_LIMIT
+  ? parseInt(process.env.NEXT_PUBLIC_DAILY_QUESTION_LIMIT, 10)
+  : null;
 const MAX_CHARS = 200;
 const COOKIE_NAME = 'brag_questions';
 const OWNER_NAME = process.env.NEXT_PUBLIC_OWNER_NAME ?? 'my';
@@ -52,7 +54,7 @@ export default function BragExplorer() {
   useEffect(() => {
     const count = getDailyCount();
     setDailyCount(count);
-    if (count > DAILY_LIMIT) {
+    if (DAILY_LIMIT !== null && count > DAILY_LIMIT) {
       setLimitReached(true);
       setDisabled(true);
     }
@@ -67,7 +69,7 @@ export default function BragExplorer() {
     saveDailyCount(newCount);
     setDailyCount(newCount);
 
-    if (newCount > DAILY_LIMIT) {
+    if (DAILY_LIMIT !== null && newCount > DAILY_LIMIT) {
       setShowPopup(true);
       return;
     }
