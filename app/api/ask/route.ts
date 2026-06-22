@@ -9,7 +9,11 @@ async function getWorkHistory(): Promise<string> {
   if (!source) throw new Error('WORK_HISTORY_BLOB_URL is not configured');
 
   if (source.startsWith('http://') || source.startsWith('https://')) {
-    const res = await fetch(source, { next: { revalidate: 3600 } });
+    const token = process.env.BLOB_READ_WRITE_TOKEN;
+    const res = await fetch(source, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) throw new Error(`Failed to fetch work history: ${res.status}`);
     return res.text();
   }

@@ -43,7 +43,8 @@ Sign up at [console.anthropic.com](https://console.anthropic.com) and create an 
 | Variable | Value |
 |---|---|
 | `ANTHROPIC_API_KEY` | Your Anthropic API key |
-| `WORK_HISTORY_BLOB_URL` | The public URL of your uploaded markdown file |
+| `WORK_HISTORY_BLOB_URL` | URL of your work history file in Vercel Blob |
+| `BLOB_READ_WRITE_TOKEN` | Auth token for your Vercel Blob store. Vercel sets this automatically when you link a blob store to your project. |
 | `NEXT_PUBLIC_OWNER_NAME` | Your first name (e.g. `Alice`) |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Your email address |
 | `NEXT_PUBLIC_DAILY_QUESTION_LIMIT` | *(Optional)* Max questions per visitor per day. Omit for unlimited. |
