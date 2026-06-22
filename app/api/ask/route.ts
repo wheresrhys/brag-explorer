@@ -51,6 +51,7 @@ The work history is in rough chronological order with the most recent experience
 - Format each highlight clearly in markdown (bold the role/company/project, then 1–2 sentences of detail)
 - Be concrete — reference actual projects, technologies, or outcomes from the work history
 - No preamble, introduction, or closing statement — just the highlights
+- When the question specifically asks which technologies, tools, languages, databases, or frameworks have been used, scan the entire work history for every relevant one. Feature the 3 most impressive examples in the highlights, then add a footnote after a horizontal rule (---) listing any others not already covered, e.g. "*${ownerName} has also used X, Y and Z to deliver projects.*" Omit the footnote if all relevant technologies are already covered in the highlights.
 
 <work_history>
 ${workHistory}
