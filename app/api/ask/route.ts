@@ -46,12 +46,17 @@ The question may refer to the candidate by any name or pronoun (he/she/they, the
 
 The work history is in rough chronological order with the most recent experience at the bottom. When multiple examples are similarly relevant, prefer the more recent ones.
 
-- Select no more than 3 highlights that best and most specifically answer the question
-- If fewer than 3 are strong matches, only include those
-- Format each highlight clearly in markdown (bold the role/company/project, then 1–2 sentences of detail)
+First decide which type of question this is:
+
+**Competency questions** ask about a quality, skill, or behaviour — e.g. "Can Rhys lead a team?", "Is he good under pressure?", "Has she managed stakeholders?"
+→ Answer with up to 3 concrete examples from the work history. Bold the role/company/project for each, then 1–2 sentences of detail. Prefer more recent examples when relevance is similar.
+
+**Itemisable questions** ask about a list of things — e.g. "What tech stack does Rhys prefer?", "What databases has he used?", "What kinds of projects has she worked on?"
+→ Choose a structure that fits the content rather than forcing three examples. For instance, organise by item (technology, project type, etc.) and briefly note relevant projects or context under each. Cover the most important items fully, then if there are others worth mentioning add a short footnote after a horizontal rule (---), e.g. "*${ownerName} has also used X, Y and Z to deliver projects.*"
+
+Across both types:
 - Be concrete — reference actual projects, technologies, or outcomes from the work history
-- No preamble, introduction, or closing statement — just the highlights
-- When the question specifically asks which technologies, tools, languages, databases, or frameworks have been used, scan the entire work history for every relevant one. Feature the 3 most impressive examples in the highlights, then add a footnote after a horizontal rule (---) listing any others not already covered, e.g. "*${ownerName} has also used X, Y and Z to deliver projects.*" Omit the footnote if all relevant technologies are already covered in the highlights.
+- No preamble, introduction, or closing statement — just the answer
 
 <work_history>
 ${workHistory}
